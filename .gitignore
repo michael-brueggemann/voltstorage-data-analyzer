@@ -1,0 +1,12 @@
+.cache/
+.parcel-cache/
+.vscode/*
+!.vscode/settings.json
+dist/
+node_modules/
+
+src/version.json
+
+package-lock.json
+
+data/

@@ -1,0 +1,36 @@
+{
+  "plugins": ["html", "@typescript-eslint"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/eslint-recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "settings": {
+    "html/xml-extensions": [".html"]
+  },
+  "globals": {
+    "window": false,
+    "document": false,
+    "localStorage": false,
+    "sessionStorage": false,
+    "console": true
+  },
+  "rules": {
+    "quotes": ["warn", "single"],
+    "no-console": ["warn", {"allow": ["warn", "error"]}],
+    "max-len": ["error", {"code": 140}],
+    "semi": "error",
+    "eqeqeq": ["error", "smart"],
+    "no-var": "error",
+    "no-warning-comments": ["off", {"terms": ["todo", "impl", "fixme"], "location": "anywhere"}],
+    "prefer-const": ["error", {"destructuring": "any", "ignoreReadBeforeAssign": false}],
+    "spaced-comment": ["warn", "always"],
+
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "@typescript-eslint/explicit-module-boundary-types": ["warn"]
+  }
+}
