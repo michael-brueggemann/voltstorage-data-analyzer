@@ -1,0 +1,189 @@
+fieldset {
+  border: 1px solid grey;
+  border-radius: 6px;
+  margin: 5px;
+}
+
+// @media (min-width: 500px) {
+//   .box {
+//     width: 350px;
+//   }
+// }
+// @media (min-width: 1000px) {
+//   .messageBox {
+//     position: absolute;
+//     top: 10px;
+//     right: 10px;
+//     width: 500px;
+//     height: 180px;
+//   }
+// }
+
+.appTitle {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.pure-g {
+  margin: 5px;
+}
+
+.line {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.title {
+  width: 90px;
+}
+
+.center {
+  text-align: center;
+}
+
+.todoBlock {
+  width: 100%;
+  text-align: right;
+}
+
+.saveRawData {
+  margin-right: 5px;
+}
+
+.diagram {
+  position: relative;
+}
+
+.messages > fieldset {
+}
+
+.messageBox {
+  // position: absolute;
+  // top: 10px;
+  // left: 20%;
+  // right: 65px;
+
+  // height: 80px;
+
+  // opacity: 0.5;
+
+  /* transition the background-color over 1s with a linear animation */
+  transition: background-color 1s linear;
+}
+
+#messageLog {
+  // height: 100%;
+  height: 210px;
+
+  font-size: smaller;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#messageLog > span {
+  display: block;
+}
+
+.changedBackground {
+  background-color: orange;
+  opacity: 0.7;
+}
+
+// adjust height to settings height
+// needed if a month has many weeks
+@media (min-width: 568px) {
+  .settings > fieldset {
+    height: 231px;
+  }
+  .dataManagement > fieldset {
+    height: 231px;
+  }
+  .messageBox {
+    left: 50%;
+  }
+}
+@media (min-width: 1280px) {
+  .messages > fieldset {
+    height: 231px;
+  }
+  .messageBox {
+    left: 50%;
+  }
+}
+
+#cachedData {
+  width: 90%;
+}
+
+.version {
+  // position: absolute;
+  // top: 2px;
+  // right: 4px;
+
+  // width: 100%;
+  // text-align: right;
+  // opacity: 0.5;
+
+  font-size: 12px;
+  text-decoration: none;
+  color: gray;
+}
+
+#myGraphs {
+  text-align: center;
+}
+
+// line breaks for long links (e.g. in mobile view)
+a {
+  word-break: break-word;
+}
+
+// d3 styles
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+// already defined via purecss
+// .hidden {
+//   display: none;
+// }
+.fillNone {
+  fill: white !important;
+}
+
+.highlight {
+  stroke-width: 4;
+  font-weight: bold;
+}
+
+// calendar
+.calendar {
+  display: inline-flex;
+  width: 200px;
+}
+
+.tavo-calendar__day_highlight {
+  color: black !important;
+  background-color: #00800080;
+}
+
+.colorExample {
+  width: 120px;
+  height: 20px;
+  display: inline-block;
+}
+
+#stats {
+  td,
+  th {
+    text-align: center;
+    min-width: 80px;
+  }
+}

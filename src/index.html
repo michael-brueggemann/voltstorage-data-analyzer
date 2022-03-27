@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VoltStorage Data Analyzer</title>
+    <!-- <script defer src="https://d3js.org/d3.v6.min.js"></script> -->
+
+    <!-- for the calendar, With locals-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"
+      integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css" />
+
+    <link rel="stylesheet" type="text/css" href="./lib/tavo-calendar.css" />
   </head>
   <body>
     <div class="pure-g">
@@ -26,6 +39,213 @@
           <a href="https://api-reference.voltstorage.com/" target="api">https://api-reference.voltstorage.com/</a>
         </fieldset>
       </div>
+
+      <div id="loginBlock" class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-2 pure-u-lg-1-3 pure-u-xl-1-4 login hidden">
+        <fieldset>
+          <legend>Login</legend>
+
+          <div class="line">
+            <div class="title">User:</div>
+            <div>
+              <input id="user" type="text" size="21" />
+            </div>
+          </div>
+          <div class="line">
+            <div class="title">Password:</div>
+            <div>
+              <input id="password" type="password" size="21" />
+            </div>
+          </div>
+          <div class="line">
+            <div class="title">Expiration:</div>
+            <div>
+              <select id="expiration">
+                <option value="24">1 day</option>
+                <option value="168" selected>1 week</option>
+                <option value="5040">1 month</option>
+              </select>
+            </div>
+          </div>
+          <div class="line">
+            <div class="title"></div>
+            <div>
+              <button id="buttonLogin">Login</button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-2 pure-u-lg-1-3 pure-u-xl-7-24 settings">
+        <fieldset>
+          <legend>Settings</legend>
+
+          <div class="line">
+            <div class="title">
+              <div class="buttonNavigation">
+                Date:<br />
+                <button id="buttonDateBefore" title="previous day">&lt;</button>
+                <button id="buttonDateAfter" title="next day">&gt;</button>
+              </div>
+              <br />
+              <br />
+              <br />
+              <div class="smoothing">
+                Smoothing:<br />
+                <select id="smoothing">
+                  <option value="1">1 min</option>
+                  <option value="5">5 min</option>
+                  <option value="10">10 min</option>
+                  <option value="15" selected>15 min</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <div class="calendar"></div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="pure-u-1 pure-u-sm-1-2 pure-u-md-1-2 pure-u-lg-1-3 pure-u-xl-7-24 dataManagement">
+        <fieldset>
+          <legend>Data Management</legend>
+
+          <div class="line date">
+            <div class="title">Date:</div>
+            <div>
+              <select id="year">
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022" selected>2022</option>
+              </select>
+              <select id="month">
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">Mai</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+                <option value="all">all</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="line">
+            <div class="title">Data:</div>
+            <div>
+              <button id="bExportData">export</button>
+              <button id="bDeleteData">delete</button>
+              <span id="dataKeys"></span>
+            </div>
+          </div>
+
+          <div class="line">
+            <div class="title">Raw data:</div>
+            <div>
+              <button id="bExportRawData">export</button>
+              <button id="bDeleteRawData">delete</button>
+              <span id="rawDataKeys"></span>
+            </div>
+          </div>
+
+          <div class="line">
+            <div class="title">DB-size:</div>
+            <div>
+              <span id="dbSize"></span>
+            </div>
+          </div>
+
+          <div class="line">
+            <div class="title"></div>
+            <div>
+              <button id="bPreload">preload month</button>
+            </div>
+          </div>
+
+          <div class="line">
+            <!-- <div class="title">Import</div> -->
+            <div>
+              Import:<br />
+              <input type="file" id="fileImport" multiple />
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="pure-u-1 pure-u-md-2-2 pure-u-lg-1-3 pure-u-xl-10-24 messages">
+        <!-- <fieldset class="messageBox">
+          <legend>Messages</legend>
+          <div id="messageLog"></div>
+        </fieldset> -->
+        <fieldset>
+          <legend>Messages</legend>
+          <div class="messageBox">
+            <div id="messageLog"></div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="pure-u-1 diagram">
+        <fieldset>
+          <legend>Diagram</legend>
+          <div id="myGraphs"></div>
+        </fieldset>
+        <!-- <fieldset class="messageBox">
+          <legend>Messages</legend>
+          <div id="messageLog"></div>
+        </fieldset> -->
+      </div>
+
+      <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3 pure-u-xl-1-4 debug hidden">
+        <fieldset>
+          <legend>Debug</legend>
+
+          <div><input type="checkbox" class="saveRawData" />save raw data</div>
+
+          <div class="line">
+            <div class="title">Logging:</div>
+            <div>
+              <a href="?logging=true">?logging=true</a>
+              <br />
+              <a href="?logging=false">?logging=false</a>
+            </div>
+          </div>
+
+          <div class="line">
+            <div class="title">Actions:</div>
+            <div>
+              <button id="buttonIntro">start intro</button>
+              <button id="buttonDeleteToken">delete token</button>
+              <br />
+              <button id="buttonTest1">test 1</button>
+              <button id="buttonTest2">test 2</button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="pure-u-1 stats">
+        <fieldset>
+          <legend>Statistics</legend>
+          <div id="stats"></div>
+        </fieldset>
+      </div>
+
+      <!-- <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-1-3 pure-u-xl-1-4">
+        <fieldset>
+          <iframe src="https://app.voltstorage.com/dashboard/overview" style="height: 500px; width: 100%"></iframe>
+        </fieldset>
+      </div> -->
     </div>
+
+    <script type="module" src="./index.ts"></script>
+
+    <link rel="stylesheet" href="./styles.scss" />
   </body>
 </html>
