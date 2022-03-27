@@ -56,7 +56,8 @@ export class StatsViewer {
         break;
       }
 
-      const data = await this.dataService.getData(date.toDate());
+      const data = null;
+      // const data = await this.dataService.getData(date.toDate());
 
       if (data) {
         const statsForDay = this.dataService.createStatsForDay(data);
