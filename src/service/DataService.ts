@@ -76,7 +76,7 @@ export class DataService {
     return stats;
   }
 
-  async getData(time: Date, to?: Date): Promise<DataSet[] | null> {
+  async getData(time: Date, to: Date | null = null, options?: DataServiceOptions): Promise<DataSet[] | null> {
     this.logger.debug('getData()');
 
     // get cached data
@@ -113,7 +113,7 @@ export class DataService {
     }
 
     // if no cached data, fetch data and store in the cache
-    if (!data) {
+    if (!data && !options?.onlyCachedDate) {
       this.logger.debug('  no cached data available');
 
       const from = dayjs(time).startOf('day');
@@ -346,4 +346,8 @@ export class DataService {
     }
     return false;
   }
+}
+
+export interface DataServiceOptions {
+  onlyCachedDate?: boolean;
 }

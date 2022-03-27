@@ -21,6 +21,10 @@ Aktuell wird die VoltStorage-API und ein System mit 2 Batterien unterstützt.
 
 # Links
 
+Demo: https://polite-water-0f1058303.1.azurestaticapps.net/  
+Bei der Demo ist nur **ein** Beispieltag hinterlegt.  
+:warning: Für Live-Daten benötigen Sie ihren persönlichen VoltStorage Account.
+
 VoltStorage: https://voltstorage.com/  
 VoltStorage-API: https://api-reference.voltstorage.com/
 
